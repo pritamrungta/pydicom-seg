@@ -1,3 +1,0 @@
-[submodule "pydicom_seg/externals/dcmqi"]
-	path = pydicom_seg/externals/dcmqi
-	url = https://github.com/QIICR/dcmqi/
