@@ -5,7 +5,7 @@ from typing import List, Optional
 
 import numpy as np
 import pydicom
-from pydicom._storage_sopclass_uids import SegmentationStorage
+from pydicom.uid import SegmentationStorage
 
 from pydicom_seg import __version__, writer_utils
 from pydicom_seg.dicom_utils import CodeSequence, DimensionOrganizationSequence

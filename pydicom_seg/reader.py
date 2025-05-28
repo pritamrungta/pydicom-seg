@@ -6,7 +6,7 @@ from typing import Dict, List, Set, Tuple
 import numpy as np
 import pydicom
 import SimpleITK as sitk
-from pydicom._storage_sopclass_uids import SegmentationStorage
+from pydicom.uid import SegmentationStorage
 
 from pydicom_seg import reader_utils
 from pydicom_seg.segmentation_dataset import SegmentationType, SegmentsOverlap
