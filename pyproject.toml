@@ -7,8 +7,8 @@ homepage = "https://github.com/razorx89/pydicom-seg"
 readme = "README.md"
 license = "MIT"
 include = [
-    "schemas/seg-schema.json",
-    "schemas/common-schema.json"
+    "pydicom_seg/schemas/seg-schema.json",
+    "pydicom_seg/schemas/common-schema.json"
 ]
 
 [tool.poetry.dependencies]
