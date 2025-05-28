@@ -5,20 +5,20 @@ import numpy as np
 import pydicom
 import SimpleITK as sitk
 
-from pydicom_seg import writer_utils
-from pydicom_seg.dicom_utils import DimensionOrganizationSequence
-from pydicom_seg.segmentation_dataset import (
+from pydicom_seg_rb import writer_utils
+from pydicom_seg_rb.dicom_utils import DimensionOrganizationSequence
+from pydicom_seg_rb.segmentation_dataset import (
     SegmentationDataset,
     SegmentationFractionalType,
     SegmentationType,
 )
-from pydicom_seg.typing import FSPath
+from pydicom_seg_rb.typing import FSPath
 
 logger = logging.getLogger(__name__)
 
 
 def _normalize_source_images(
-    dcms_or_paths: List[Union[pydicom.Dataset, FSPath]]
+    dcms_or_paths: List[Union[pydicom.Dataset, FSPath]],
 ) -> List[pydicom.Dataset]:
     """Load DICOM from any given path and normalize the data structure to
     only pydicom Datasets.
@@ -104,7 +104,7 @@ class MultiClassWriter(BaseWriter):
             segmentation = ...  # A multi-class segmentation as SimpleITK image
             series_dcms = ...  # List of `pydicom.Dataset`s related to the segmentation
 
-            template = pydicom_seg.template.from_dcmqi_metainfo('metainfo.json')
+            template = pydicom_seg_rb.template.from_dcmqi_metainfo('metainfo.json')
             writer = MultiClassWriter(template)
             dcm = writer.write(segmentation, series_dcms)
             dcm.save_as('<path>')

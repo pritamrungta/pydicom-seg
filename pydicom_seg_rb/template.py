@@ -5,22 +5,20 @@ from typing import List, Union
 import jsonschema
 import pydicom
 
-from pydicom_seg.typing import FSPath
+from pydicom_seg_rb.typing import FSPath
 
 
 def _create_validator() -> jsonschema.Draft4Validator:
     """Create a JSON validator instance from dcmqi schema files.
 
     In order to allow offline usage, the required schemas a pre-loaded from the
-    dcmqi repository located at `pydicom_seg/externals/dcmqi`.
+    dcmqi repository located at `pydicom_seg_rb/externals/dcmqi`.
 
     Returns:
         A `jsonschema.Draft4Validator` with a pre-loaded schema store.
     """
     # Load both common and segmentation schema files
-    schemas_dir = os.path.join(
-        os.path.dirname(__file__), "schemas"
-    )
+    schemas_dir = os.path.join(os.path.dirname(__file__), "schemas")
     seg_schema_path = os.path.join(schemas_dir, "seg-schema.json")
     with open(seg_schema_path) as ifile:
         seg_schema = json.load(ifile)

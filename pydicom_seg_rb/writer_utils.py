@@ -4,7 +4,7 @@ from typing import Set
 import pydicom
 import SimpleITK as sitk
 
-from pydicom_seg.dicom_utils import sitk_to_dcm_orientation
+from pydicom_seg_rb.dicom_utils import sitk_to_dcm_orientation
 
 logger = logging.getLogger(__name__)
 
@@ -27,9 +27,9 @@ def copy_segmentation_template(
             template.ClinicalTrialCoordinatingCenterName
         )
 
-    target.ContentCreatorName = template.get("ContentCreatorName", "pydicom_seg")
-    target.ContentDescription = template.get("ContentDescription", "pydicom_seg")
-    target.ContentLabel = template.get("ContentLabel", "pydicom_seg")
+    target.ContentCreatorName = template.get("ContentCreatorName", "redbrick-sdk")
+    target.ContentDescription = template.get("ContentDescription", "redbrick-sdk")
+    target.ContentLabel = template.get("ContentLabel", "redbrick-sdk")
 
     # Copy segment information
     target.SegmentSequence = []
@@ -149,8 +149,8 @@ def set_shared_functional_groups_sequence(
     dataset.PixelMeasuresSequence[0].SliceThickness = f"{sz:e}"
     dataset.PixelMeasuresSequence[0].SpacingBetweenSlices = f"{sz:e}"
     dataset.PlaneOrientationSequence = [pydicom.Dataset()]
-    dataset.PlaneOrientationSequence[
-        0
-    ].ImageOrientationPatient = sitk_to_dcm_orientation(segmentation)
+    dataset.PlaneOrientationSequence[0].ImageOrientationPatient = (
+        sitk_to_dcm_orientation(segmentation)
+    )
 
     target.SharedFunctionalGroupsSequence = pydicom.Sequence([dataset])

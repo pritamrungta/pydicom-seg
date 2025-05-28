@@ -8,8 +8,8 @@ import pydicom
 import SimpleITK as sitk
 from pydicom.uid import SegmentationStorage
 
-from pydicom_seg import reader_utils
-from pydicom_seg.segmentation_dataset import SegmentationType, SegmentsOverlap
+from pydicom_seg_rb import reader_utils
+from pydicom_seg_rb.segmentation_dataset import SegmentationType, SegmentsOverlap
 
 logger = logging.getLogger(__name__)
 
@@ -139,7 +139,7 @@ class SegmentReader(_ReaderBase):
         ::
 
             dcm = pydicom.dcmread('segmentation.dcm')
-            reader = pydicom_seg.SegmentReader()
+            reader = pydicom_seg_rb.SegmentReader()
             result = reader.read(dcm)
             data = result.segment_data(1)  # numpy array
             image = result.segment_image(1)  # SimpleITK image
@@ -218,7 +218,7 @@ class MultiClassReader(_ReaderBase):
         ::
 
             dcm = pydicom.dcmread('segmentation.dcm')
-            reader = pydicom_seg.MultiClassReader()
+            reader = pydicom_seg_rb.MultiClassReader()
             result = reader.read(dcm)
             data = result.data  # numpy array
             image = result.image  # SimpleITK image

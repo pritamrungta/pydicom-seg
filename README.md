@@ -40,7 +40,7 @@ git clone \
     https://github.com/razorx89/pydicom-seg.git
 cd pydicom-seg
 poetry build
-pip install dist/pydicom_seg-<version>-py3-none-any.whl
+pip install dist/pydicom_seg_rb-<version>-py3-none-any.whl
 ```
 
 ### Development
@@ -63,12 +63,12 @@ poetry run pre-commit install
 
 ```python
 import pydicom
-import pydicom_seg
+import pydicom_seg_rb
 import SimpleITK as sitk
 
 dcm = pydicom.dcmread('segmentation.dcm')
 
-reader = pydicom_seg.SegmentReader()
+reader = pydicom_seg_rb.SegmentReader()
 result = reader.read(dcm)
 
 for segment_number in result.available_segments:
@@ -82,7 +82,7 @@ for segment_number in result.available_segments:
 ```python
 dcm = pydicom.dcmread('segmentation.dcm')
 
-reader = pydicom_seg.MultiClassReader()
+reader = pydicom_seg_rb.MultiClassReader()
 result = reader.read(dcm)
 
 image_data = result.data  # directly available
@@ -103,8 +103,8 @@ source_images = [
     pydicom.dcmread(x, stop_before_pixels=True)
     for x in dicom_series_paths
 ]
-template = pydicom_seg.template.from_dcmqi_metainfo('metainfo.json')
-writer = pydicom_seg.MultiClassWriter(
+template = pydicom_seg_rb.template.from_dcmqi_metainfo('metainfo.json')
+writer = pydicom_seg_rb.MultiClassWriter(
     template=template,
     inplane_cropping=False,  # Crop image slices to the minimum bounding box on
                              # x and y axes. Maybe not supported by other frameworks.

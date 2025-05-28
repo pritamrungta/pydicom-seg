@@ -7,8 +7,8 @@ import numpy as np
 import pydicom
 from pydicom.uid import SegmentationStorage
 
-from pydicom_seg import __version__, writer_utils
-from pydicom_seg.dicom_utils import CodeSequence, DimensionOrganizationSequence
+from pydicom_seg_rb import __version__, writer_utils
+from pydicom_seg_rb.dicom_utils import CodeSequence, DimensionOrganizationSequence
 
 logger = logging.getLogger(__name__)
 
@@ -319,9 +319,9 @@ class SegmentationDataset(pydicom.Dataset):
         frame_fg_item.SegmentIdentificationSequence = pydicom.Sequence(
             [pydicom.Dataset()]
         )
-        frame_fg_item.SegmentIdentificationSequence[
-            0
-        ].ReferencedSegmentNumber = referenced_segment
+        frame_fg_item.SegmentIdentificationSequence[0].ReferencedSegmentNumber = (
+            referenced_segment
+        )
 
         # Each frame requires references to the original DICOM files
         derivation_image = pydicom.Dataset()

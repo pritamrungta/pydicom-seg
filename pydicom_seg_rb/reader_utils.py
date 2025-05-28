@@ -4,7 +4,7 @@ from typing import Dict, Tuple
 import numpy as np
 import pydicom
 
-from pydicom_seg.dicom_utils import dcm_to_sitk_orientation
+from pydicom_seg_rb.dicom_utils import dcm_to_sitk_orientation
 
 logger = logging.getLogger(__name__)
 
